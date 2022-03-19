@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="UTF-8">
+        <title>Array Equality</title>
+
+        <!-- Personal CSS -->
+        <link rel="stylesheet" type="text/css" href="styles.css">
+        <link rel="stylesheet" type="text/css" href="https://thiago-meneses.github.io/spacing.css">
+
+        <!-- FONTS -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,300&family=Roboto+Mono:wght@100;200;300;400;500;600;700&family=Nunito:wght@200;300;400;600;700;800;900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="bd-container">
+            <main class="main-container">
+                <div class="content-header mb-5">
+                    <h1 class="headline title-frame my-3">Array Equality</h1>
+                </div>
+                <div class="content">
+                    <div class="frame-line">
+                        <h1 class='headline' id="examples"><span class="backdrop">Examples</span></h1>
+                        <details class="example-container-chapter my-3">
+                            <summary class="py-3"><b>Same Memory Address:</b></summary>
+                            <p>Both are assigned 5 as their value</p>
+                            <p>However, their types are not the same</p>
+                            <div class="example-grid">
+                                <div class="item1">
+                                    <pre class="snippet">
+                                        <code>
+let a = [1, 2]
+let b = a
+
+console.log(`Double Equals: ${ a == b }`)
+console.log(`Triple Equals: ${ a === b }`)
+                                        </code>
+                                    </pre>
+                                </div>
+                                <div class="item2">
+                                    <p class="mt-3">Console:</p>
+                                </div>
+                                <div class="item3">
+                                    <pre class="console">
+                                        <code>
+Double Equals: true
+Triple Equals: true
+                                        </code>
+                                    </pre>
+                                </div>
+                                <div class="item4">
+                                    <p class="mt-2"><b>Why are both logs true?</b></p>
+                                    <p class="mt-2">They are both true because in this example <code class="inlineCode">[1, 2]</code> was assigned to <code class="inlineCode">a</code> and, right after that, <code class="inlineCode">a</code> was assigned to <code class="inlineCode">b</code></p>
+                                    <p class="mt-2"><code class="inlineCode">a</code> was assigned with a Memory Address, this same memory address was the one assigned to <code class="inlineCode">b</code></p>
+                                    <p class="mt-2">Both variables have been assigned the <b>same Memory Address</b>, this is going to be their actual value, they are equal.</p>
+                                </div>
+                            </div>
+                        </details>
+                        <details class="example-container-chapter my-3">
+                            <summary class="py-3"><b>Different Memory Address</b></summary>
+                            <p>Both are assigned 5 as their value</p>
+                            <p>However, their types are not the same</p>
+                            <div class="example-grid">
+                                <div class="item1">
+                                    <pre class="snippet">
+                                        <code>
+let a = [1, 2]	//0x01 - Memory Address Example
+let b = [1, 2]	//0x02 - Memory Address Example
+//0x01 is not the same as 0x02
+
+
+console.log(`Double Equals: ${ a == b }`)
+console.log(`Triple Equals: ${ a === b }`)
+                                        </code>
+                                    </pre>
+                                </div>
+                                <div class="item2">
+                                    <p class="mt-3">Console:</p>
+                                </div>
+                                <div class="item3">
+                                    <pre class="console">
+                                        <code>
+Double Equals: false
+Triple Equals: false
+                                        </code>
+                                    </pre>
+                                </div>
+                                <div class="item4">
+                                    <p class="mt-5">So why are both logs false now?
+                                    <p class="mt-2">This happened because even if both variables have 2 arrays that are equal in their values, each one of these arrays will occupy a different Memory Address</p>
+                                    <p class="mt-2"><code class="inlineCode">a</code> and <code class="inlineCode">b</code> were assigned to different addresses.</p>
+                                    <p class="mt-2">Even if both memory addresses have the same values, they are different addresses.</p>
+                                    <p class="mt-5">It's like having 2 identical cars in a parking lot, they can be the same model, but they are not in the same parking space</p>
+                                </div>
+                            </div>
+                        </details>
+                        <details class="example-container-chapter my-3">
+                            <summary class="py-3"><b>More Examples</b></summary>
+                            <p>Both are assigned 5 as their value</p>
+                            <p>However, their types are not the same</p>
+                            <div class="example-grid">
+                                <div class="item1">
+                                    <pre class="snippet">
+                                        <code>
+let a = [1, 2]
+console.log(`Value before: ${a}`)
+
+
+function add( array, element ) { 	//( 0x01, 3 )
+    array.push(element);
+    let newArray = array;
+    return newArray;
+}
+
+console.log(add( a, 3 ))
+console.log(`Value after: ${a}`)
+                                        </code>
+                                    </pre>
+                                </div>
+                                <div class="item2">
+                                    <p class="mt-3">Console:</p>
+                                </div>
+                                <div class="item3">
+                                    <pre class="console">
+                                        <code>
+[1, 2]
+[1, 2, 3]
+                                        </code>
+                                    </pre>
+                                </div>
+                                <div class="item4">
+                                    <p class="mt-5">The actual value being passed to the <code class="inlineCode">add</code> function is the Memory Address that <code class="inlineCode">add</code> holds.</p>
+                                    <p>If, for example, <code class="inlineCode">0x01</code> is the Memory Address, this is what <code class="inlineCode">add</code> receives as the first argument</p>
+                                    <p>When we call the <code class="inlineCode">add</code> function, we end up also changing the <code class="inlineCode">a</code> variable</p>
+                                    <p>After calling the function, a changed it's value from [1, 2] to [1, 2, 3]</p>
+                                    <p class="mt-2">We <b>changed an array that was outside the function</b></p>
+                                    <p class="mt-1">This is bad and should be avoided.</p>
+                                </div>
+                            </div>
+                            <div class="example-grid mt-5">
+                                <div class="item1">
+                                    <pre class="snippet">
+                                        <code>
+let a = [1, 2]
+console.log(`Value before: ${a}`)
+
+
+function add( array, element ) { 	//( 0x01, 3 )
+    array = [element] // array = 0x02
+}
+
+add( a, 3 )
+console.log(`Value after: ${a}`)
+                                        </code>
+                                    </pre>
+                                </div>
+                                <div class="item2">
+                                    <p class="mt-3">Console:</p>
+                                </div>
+                                <div class="item3">
+                                    <pre class="console">
+                                        <code>
+[1, 2]
+[1, 2]
+                                        </code>
+                                    </pre>
+                                </div>
+                                <div class="item4">
+                                    <p class="mt-5">When we use the equal sign, we are actually copying the value of the array from the right and transfering it to the array in the left</p>
+                                    <p>This is the catalyser that has made the Memory Address change from 0x01 to 0x02</p>
+                                    <p>And because of this 'array' no longer references the external 'a' variable, which we were originally modifying with the push command</p>
+                                    <p>Remember that everytime we use equal, we are reassigning a value, and this means we change memory addresses</p>
+                                </div>
+                            </div>
+                        </details>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </body>
+</html>
